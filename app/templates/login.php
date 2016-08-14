@@ -1,3 +1,7 @@
+
+
+<?php $this -> layout('master')?> 
+
 <body id="login-page">
 
     <div class="row align-center" id="login-container">
@@ -15,7 +19,7 @@
             <div class="columns large-8">
               <ul class="no-bullet">
                 <li><a href="">Forgotten your password?</a></li>
-                <li><a href="">Sign up now</a></li>
+                <li><a href="index.php?page=register">Sign up now</a></li>
               </ul>
             </div>
             <div class="columns large-4">
