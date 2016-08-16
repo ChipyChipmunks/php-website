@@ -23,9 +23,19 @@
             <hr>
 
             <form action="index.php?page=landing" method="post">
-              <input type="text" name="email" placeholder="Email">
-              <input type="password" name="password" placeholder="Create a password">
-              <input type="submit" class="button alert expanded" value="Sign Up">
+              <input type="text" name="email" name="email" value="<?= isset( $_POST['email'] ) ? $_POST['email'] : ''?>" placeholder="Email">
+
+              <?php if ( isset( $emailMessage ) ) : ?>
+                <p> <?= $emailMessage ?> </p>
+              <?php endif; ?>
+
+              <input type="password" name="password" name="password" placeholder="Create a password">
+
+              <?php if ( isset( $passwordMessage ) ) : ?>
+                <p> <?= $passwordMessage ?> </p>
+              <?php endif; ?>
+
+              <input type="submit" class="button alert" name="new-account" value="Sign Up">
             </form>
 
             <small>Creating an account means you're OK with Pinterest's <a href="">Terms of Service</a> and <a href="">Privacy Policy</a></small>

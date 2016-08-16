@@ -6,6 +6,10 @@ namespace Composer\Autoload;
 
 class ComposerStaticInita73649936b9fadd9d42b34223f5db1a5
 {
+    public static $files = array (
+        'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'L' => 
         array (

@@ -2,15 +2,23 @@
 
 <?php
 	
+	phpinfo();
+
 	require 'vendor/autoload.php'; //Make everything in the vendor folder available to the project
 
 
-	if ( isset($_GET['page'] ) ){
-		$page = $_GET['page'];
-	}
-	else {
-		$page = 'landing';
-	}
+	// if ( isset($_GET['page'] ) ){
+	// 	$page = $_GET['page'];
+	// }
+	// else {
+	// 	$page = 'landing';
+	// }
+
+	//check the data in $_GET['page']
+	$page = isset( $_GET['page'] ) ? $_GET['page'] : 'landing';
+
+	//connect to database
+	$dbc = new mysqli( 'localhost', 'root', '', 'pinterest_liam' );
 
 
 	/*
@@ -20,7 +28,7 @@
 	switch ($page) {
 		case 'landing' :
 			require 'app/controllers/LandingController.php';
-			$controller = new LandingController();
+			$controller = new LandingController($dbc);
 		break;
 
 		case 'login':
@@ -38,5 +46,5 @@
 		break;
 	}
 
-	$controller -> buildHTML();
+	$controller->buildHTML();
 ?>
