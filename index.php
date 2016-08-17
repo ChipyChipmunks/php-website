@@ -1,6 +1,8 @@
 
 
 <?php
+
+	session_start();
 	
 	require 'vendor/autoload.php'; //Make everything in the vendor folder available to the project
 
@@ -31,16 +33,16 @@
 
 		case 'login':
 			require 'app/controllers/LoginController.php';
-			$controller = new LoginController();
+			$controller = new LoginController($dbc);
 		break;
 
 		case 'stream':
-			echo $plates -> render('stream');
+			
 		break;
 		
 		default:
 			require 'app/controllers/LandingController.php';
-			$controller = new LandingController();
+			$controller = new LandingController($dbc);
 		break;
 	}
 
