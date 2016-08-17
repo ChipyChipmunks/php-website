@@ -29,7 +29,7 @@
                 <p> <?= $emailMessage ?> </p>
               <?php endif; ?>
 
-              <input type="password" name="password" name="password" placeholder="Create a password">
+              <input type="password" name="password" placeholder="Create a password">
 
               <?php if ( isset( $passwordMessage ) ) : ?>
                 <p> <?= $passwordMessage ?> </p>

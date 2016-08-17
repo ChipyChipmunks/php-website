@@ -34,10 +34,14 @@ class LandingController {
 		$data = [];
 
 		if ( $this->emailMessage != '' ) {
-			$data['emailError'] = $this->emailMessage;
+			$data['emailMessage'] = $this->emailMessage;
 		}
 
-		echo $plates -> render('landing', $data);
+		if ($this->passwordMessage != '') {
+			$data['passwordMessage'] = $this->passwordMessage;
+		}
+
+		echo $plates->render('landing', $data);
 	}
 
 	private function validateRegistrationForm() {
@@ -45,12 +49,13 @@ class LandingController {
 		$totalErrors = 0;
 
 		//Validate email
-		if ( $_POST['email'] != '' ) {
-			$this->emailMessage = 'validation: invalid';
+		if ( $_POST['email'] == '' ) {
+			$this->emailMessage =  'Invalid Email';
 			$totalErrors++;
 		}
 
-		if ( strlen( $_POST['password'] ) < 8 ) {
+		if ( strlen ( $_POST['password']) < 8 ) {
+			//Password is too short
 			$this->passwordMessage = 'Must be at least 8 characters';
 			$totalErrors++;
 		}
@@ -61,7 +66,13 @@ class LandingController {
 			//filter user data
 			$filteredEmail = $this->dbc->cubrid_real_escape_string( $_POST['email'] );
 
-			die($filteredEmail);
+			//Hash password
+			$hash = password_hash( $_POST['password'], PASSWORD_BCRYPT );
+
+			//prepare the SQL
+			$sql = "INSERT INTO users (email, password) VALUES ('$filteredEmail', $hash)";
+
+			die( $sql );
 		}
 
 	}
